@@ -1,0 +1,45 @@
+Problema 1
+
+- Citim numarul de copaci si inaltimile primilor 2. (copac_pred si copac)
+- Primul si ultimul copac nu pot fi speciali.
+- Verificam pe rand daca un copac este special.
+- Aceasta verficare se realizeaza astfel:
+	1) Se citeste inaltimea celui de-al treilea copac (copac_succ).
+	2) Se verifca daca inaltimea copacului testat este mai mare decat inaltimile copacilor adiacenti.
+	3) Daca da, este special, si atunci:
+		a) Adaugam inaltimea sa la suma.
+		b) Crestem numarul copacilor speciali cu o unitate.
+		c) Daca inaltimea acestuia este mai mare/mica si daca indicele este impar/par, schimbam xmax_impar si xmin_par.
+	4) copac devine copac_pred, copac_succ devine copac si urmeaza sa fie testat.
+	5) Repetam pana la al (N-2)-lea copac.
+- Afisam cele 4 variabile cerute.
+
+Problema 2
+
+- Citim numarul dat.
+- Vom salva secventa de diferente intr-un vector v.
+- In v[0] salvam n_descrescator - n_crescator (descrise in cerinta).
+- Pentru a calcula cand incepe perioada, consideram un contor numit curent = 1. Apoi:
+	1) Calculam v[curent] din vector precum v[0], insa folosind v[curent-1] in locul lui n.
+	2) Parcurgem vectorul pana la v[curent-1], verificam daca oricare dintre elementele (de exemplu v[k]) anterioare este egal cu v[curent] si, daca da, afisam indicele acestuia (k), precum si toate elementele din vector pornind de la v[k] pana la v[curent-1]. Daca nu, crestem curent si revenim la 1).
+
+Problema 3
+
+- Citim numarul de materii si salvam notele si numarul de credite in 2 vectori astfel incat nota la o materie are acelasi index cu numarul de credite la aceeasi materie.
+- Citim p_min.
+- Calculam punctajul P conform cerintei.
+- Facem o "sortare speciala", bazata pe impactul pe care l-ar avea schimbarea notei in 10, adica cu cat produsul ((10-nota) * numar de credite) este mai mare, cu atat nota si numarul de credite de la acea materie se regasesc mai la inceputul vectorilor lor.
+- Cautam indicele pana la care sa schimbam note in 10. Dupa el am avea doar note de 10, care nu ne-ar interesa.
+- Adaugam, pe rand, produsul ((10-nota) * numar de credite) la P (memorand de cate ori facem acest lucru), pana cand acesta devine mai mare sau egal cu p_min sau pana cand indicele ne indica ca nu mai exista note diferite de 10.
+- Daca P a devenit mai mare sau egal decat p_min, afisam cate produse am adaugat la P, iar daca nu, afisam -1.
+
+Problema 4
+
+- Citim numarul de puzzle-uri T si repetam algoritmul urmator de T ori:
+	- Citim numarul de linii N si numarul de coloane M.
+	- Pentru urmatoarele N+M randuri vom avea restrictiile: numarul de grupuri colorate si dimensiunile fiecarui grup de pe linie (primele N randuri)/coloana (urmatoarele M randuri). Pentru una:  
+		- Citim numarul de grupuri.
+		- Consideram vectorul suma_pe_linia (pentru primele N randuri)/suma_pe_coloana (pentru urmatoarele M randuri) in care vom memora sumele dimensiunilor grupurilor colorate de pe linia/coloana pe care ne aflam.
+	- Citim grid-ul.
+	- Puzzle-ul este corect daca sumele elementelor de pe fiecare linie/coloana a grid-ului sunt egale cu sumele dimensiunilor grupurilor colorate de pe fiecare linie/coloana calculate in cadrul restrictiilor. Altfel spus, suma de pe linia i a grid-ului trebuie sa fie egala cu suma_pe_linia[i].
+	- Daca se verifica conditia, atunci afisam "Corect", altfel "Eroare".
